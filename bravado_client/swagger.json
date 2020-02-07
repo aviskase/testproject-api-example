@@ -1,0 +1,4825 @@
+{
+  "definitions": {
+    "Agent": {
+      "description": "Contains agent information",
+      "properties": {
+        "alias": {
+          "description": "Agent alias",
+          "type": "string"
+        },
+        "id": {
+          "description": "Agent GUID",
+          "type": "string"
+        },
+        "lastHeartBeat": {
+          "description": "Last time the agent sent a heartbeat",
+          "format": "date-time",
+          "type": "string"
+        },
+        "machineName": {
+          "description": "Agent machine name",
+          "type": "string"
+        },
+        "osType": {
+          "description": "Agent machine operating system type",
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Agent machine operating system version",
+          "type": "string"
+        },
+        "physicalMemory": {
+          "description": "Agent machine physical memory (installed)",
+          "format": "int64",
+          "type": "integer"
+        },
+        "processorType": {
+          "description": "Agent machine processor type",
+          "type": "string"
+        },
+        "state": {
+          "description": "Agent state",
+          "type": "string"
+        },
+        "status": {
+          "description": "Agent status (user private / account public)",
+          "type": "string"
+        },
+        "version": {
+          "description": "Agent version",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "AgentDTO"
+      }
+    },
+    "Application": {
+      "description": "Contains application information",
+      "properties": {
+        "androidActivity": {
+          "description": "Android activity",
+          "type": "string"
+        },
+        "androidPackage": {
+          "description": "Android package",
+          "type": "string"
+        },
+        "appleBundleId": {
+          "description": "Apple BundleId",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the application",
+          "type": "string"
+        },
+        "fileName": {
+          "description": "Application file name",
+          "type": "string"
+        },
+        "fileSize": {
+          "description": "Application file size",
+          "format": "int64",
+          "type": "integer"
+        },
+        "hybrid": {
+          "description": "Is a hybrid application",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "The GUID of the application",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the application",
+          "type": "string"
+        },
+        "platform": {
+          "description": "The description of the application",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the web application",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ApplicationDTO"
+      }
+    },
+    "Browser": {
+      "description": "Contains browser information",
+      "properties": {
+        "bitness": {
+          "description": "Browser bit",
+          "format": "int32",
+          "type": "integer"
+        },
+        "outdated": {
+          "description": "An indicator if the browser is out of date",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "The type of the browser",
+          "enum": [
+            "Chrome",
+            "ChromeHeadless",
+            "Firefox",
+            "FirefoxHeadless",
+            "InternetExplorer",
+            "Safari",
+            "Opera",
+            "Edge"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the browser",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "BrowserDTO"
+      }
+    },
+    "BrowserRunStats": {
+      "description": "Contains browser execution information",
+      "properties": {
+        "executionEnd": {
+          "description": "When the execution ended (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "executionStart": {
+          "description": "When the execution started (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "passRatio": {
+          "description": "Success ratio",
+          "format": "float",
+          "type": "number"
+        },
+        "type": {
+          "description": "Browser type",
+          "type": "string"
+        },
+        "version": {
+          "description": "Browser version",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "BrowserRunStatsDTO"
+      }
+    },
+    "CreateApplication": {
+      "description": "Contains application information for creating applications",
+      "properties": {
+        "androidActivity": {
+          "description": "Android activity",
+          "type": "string"
+        },
+        "androidPackage": {
+          "description": "Android package",
+          "type": "string"
+        },
+        "appleBundleId": {
+          "description": "Apple BundleId",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the application",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the application",
+          "type": "string"
+        },
+        "platform": {
+          "description": "The description of the application",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the web application",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "CreateApplicationDTO"
+      }
+    },
+    "CreateJob": {
+      "description": "Contains job information (used for job creation )",
+      "properties": {
+        "agentId": {
+          "description": "The GUID of the agent that is associated to the job",
+          "type": "string"
+        },
+        "browsers": {
+          "description": "Browsers (for web job only)",
+          "items": {
+            "enum": [
+              "Chrome",
+              "ChromeHeadless",
+              "Firefox",
+              "FirefoxHeadless",
+              "InternetExplorer",
+              "Safari",
+              "Opera",
+              "Edge"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "xml": {
+            "name": "BrowserType",
+            "wrapped": true
+          }
+        },
+        "description": {
+          "description": "The description of the job",
+          "type": "string"
+        },
+        "devices": {
+          "description": "Device UDIDs (for mobile job only)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of the job",
+          "type": "string"
+        },
+        "platform": {
+          "description": "The platform off the job",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "CreateJobDTO"
+      }
+    },
+    "CreateOrUpdateProjectParameter": {
+      "description": "Contains project parameter information for creating parameters",
+      "properties": {
+        "description": {
+          "description": "The description of the parameter",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the parameter",
+          "type": "string"
+        },
+        "secret": {
+          "description": "Indicates if this is a secret parameter",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The value of the parameter",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "CreateOrUpdateProjectParameterDTO"
+      }
+    },
+    "Device": {
+      "description": "Contains job device information",
+      "properties": {
+        "agentGuid": {
+          "description": "The GUID of the agent that the device was/is connected to",
+          "type": "string"
+        },
+        "connected": {
+          "description": "Is the device connected",
+          "type": "boolean"
+        },
+        "emulator": {
+          "description": "Is an emulator",
+          "type": "boolean"
+        },
+        "model": {
+          "description": "The model of the device",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the device",
+          "type": "string"
+        },
+        "osType": {
+          "description": "The operating system type",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "The operating system version",
+          "type": "string"
+        },
+        "udid": {
+          "description": "The UDID of the device",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "DeviceDTO"
+      }
+    },
+    "DeviceRunStats": {
+      "description": "Contains device execution information",
+      "properties": {
+        "executionEnd": {
+          "description": "When the execution ended (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "executionStart": {
+          "description": "When the execution started (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "model": {
+          "description": "The model of the device",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the device",
+          "type": "string"
+        },
+        "osType": {
+          "description": "The operating system type",
+          "type": "string"
+        },
+        "passRatio": {
+          "description": "Success ratio",
+          "format": "float",
+          "type": "number"
+        },
+        "udid": {
+          "description": "The UDID of the device",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "DeviceRunStatsDTO"
+      }
+    },
+    "ExecutingAgent": {
+      "description": "Contains information of an agent that was used for execution",
+      "properties": {
+        "alias": {
+          "description": "Agent alias",
+          "type": "string"
+        },
+        "machineName": {
+          "description": "Agent machine name",
+          "type": "string"
+        },
+        "osType": {
+          "description": "Agent machine operating system type",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Agent machine operating system version",
+          "type": "string"
+        },
+        "version": {
+          "description": "Agent version",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ExecutingAgentDTO"
+      }
+    },
+    "Execution": {
+      "description": "Contains execution information",
+      "properties": {
+        "id": {
+          "description": "The GUID of the execution",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ExecutionDTO"
+      }
+    },
+    "ExecutionParameters": {
+      "description": "Parameters that can be provided when executing a job\r\nThis data will be used to override the defined defaults for a single execution",
+      "properties": {
+        "agentId": {
+          "description": "The target agent GUID\r\nIf omitted or NULL, The default agent will be used",
+          "type": "string"
+        },
+        "browsers": {
+          "description": "Target browsers (Optional, will use default if none provided)",
+          "items": {
+            "enum": [
+              "Chrome",
+              "ChromeHeadless",
+              "Firefox",
+              "FirefoxHeadless",
+              "InternetExplorer",
+              "Safari",
+              "Opera",
+              "Edge"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "xml": {
+            "name": "BrowserType",
+            "wrapped": true
+          }
+        },
+        "devices": {
+          "description": "Target devices (Optional, will use default if none provided)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "queue": {
+          "description": "Will queue the execution if agent is currently busy and execute when the agent will be available",
+          "type": "boolean"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ExecutionParametersDTO"
+      }
+    },
+    "ExecutionState": {
+      "description": "Contains execution state information",
+      "properties": {
+        "agent": {
+          "description": "The agent that is executing the job",
+          "type": "string"
+        },
+        "app": {
+          "description": "The application that is being tested",
+          "type": "string"
+        },
+        "message": {
+          "description": "Execution message if available",
+          "type": "string"
+        },
+        "report": {
+          "description": "Report URL if exists",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the execution",
+          "enum": [
+            "Unknown",
+            "Ready",
+            "Skipped",
+            "Passed",
+            "Failed",
+            "Aborting",
+            "Executing",
+            "Suspended",
+            "Error"
+          ],
+          "type": "string"
+        },
+        "target": {
+          "description": "The current target (device / browser)\r\nWhere the job is currently running",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ExecutionStateDTO"
+      }
+    },
+    "FileDetails": {
+      "description": "Contains file details",
+      "properties": {
+        "hash": {
+          "description": "A hash of the file",
+          "type": "string"
+        },
+        "name": {
+          "description": "A name of the file",
+          "type": "string"
+        },
+        "size": {
+          "description": "A size of the file",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "FileDetailsDTO"
+      }
+    },
+    "FileDownloadInfo": {
+      "description": "Contains file download information",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/HttpMethod",
+          "description": "The method to be used for retrieval"
+        },
+        "url": {
+          "description": "The location of the file",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "FileDownloadInfoDTO"
+      }
+    },
+    "FileUploadInfo": {
+      "description": "Contains file upload information",
+      "properties": {
+        "method": {
+          "$ref": "#/definitions/HttpMethod",
+          "description": "HTTP method to be used"
+        },
+        "url": {
+          "description": "The location where to upload the file",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "FileUploadInfoDTO"
+      }
+    },
+    "FileUploadedInfo": {
+      "description": "Contains file information",
+      "properties": {
+        "fileName": {
+          "description": "A name of the file",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "FileUploadedInfoDTO"
+      }
+    },
+    "Framework": {
+      "description": "Contains agent frameworks information",
+      "properties": {
+        "bitness": {
+          "description": "Framework bitness",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "Framework type",
+          "enum": [
+            "Java",
+            "DotNet",
+            "Appium",
+            "Mono",
+            "Xcode",
+            "ADB",
+            "NodeJs",
+            "Python"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Framework version",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "FrameworkDTO"
+      }
+    },
+    "HttpMethod": {
+      "properties": {
+        "Method": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "HttpMethod"
+      }
+    },
+    "JUnitError": {
+      "description": "JUnit error",
+      "properties": {
+        "Message": {
+          "description": "Message",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JUnitError"
+      }
+    },
+    "JUnitFailure": {
+      "description": "JUnit failure",
+      "properties": {
+        "Message": {
+          "description": "Message",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Type",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JUnitFailure"
+      }
+    },
+    "JUnitProperty": {
+      "description": "JUnit Property",
+      "properties": {
+        "Name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "Value": {
+          "description": "Value",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JUnitProperty"
+      }
+    },
+    "JUnitTestCase": {
+      "description": "JUnit test case",
+      "properties": {
+        "Error": {
+          "$ref": "#/definitions/JUnitError",
+          "description": "Error"
+        },
+        "Failures": {
+          "description": "Failures array",
+          "items": {
+            "$ref": "#/definitions/JUnitFailure"
+          },
+          "type": "array",
+          "xml": {
+            "name": "JUnitFailure",
+            "wrapped": true
+          }
+        },
+        "Name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "Result": {
+          "description": "Result",
+          "type": "string"
+        },
+        "Time": {
+          "description": "Time",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JUnitTestCase"
+      }
+    },
+    "JUnitTestSuite": {
+      "description": "JUnit test suite",
+      "properties": {
+        "Error": {
+          "$ref": "#/definitions/JUnitError",
+          "description": "Error"
+        },
+        "Failures": {
+          "description": "Failures",
+          "type": "string"
+        },
+        "Name": {
+          "description": "Name",
+          "type": "string"
+        },
+        "Properties": {
+          "description": "Properties",
+          "items": {
+            "$ref": "#/definitions/JUnitProperty"
+          },
+          "type": "array",
+          "xml": {
+            "name": "JUnitProperty",
+            "wrapped": true
+          }
+        },
+        "TestCases": {
+          "description": "Test cases",
+          "items": {
+            "$ref": "#/definitions/JUnitTestCase"
+          },
+          "type": "array",
+          "xml": {
+            "name": "JUnitTestCase",
+            "wrapped": true
+          }
+        },
+        "Tests": {
+          "description": "Tests",
+          "type": "string"
+        },
+        "Time": {
+          "description": "Time",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JUnitTestSuite"
+      }
+    },
+    "Job": {
+      "description": "Contains job information",
+      "properties": {
+        "agentId": {
+          "description": "The GUID of the agent that is associated to the job",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the job",
+          "type": "string"
+        },
+        "id": {
+          "description": "The GUID of the job",
+          "type": "string"
+        },
+        "isScheduled": {
+          "description": "Is the job scheduled",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the job",
+          "type": "string"
+        },
+        "nextExecution": {
+          "description": "Next execution of the job",
+          "format": "date-time",
+          "type": "string"
+        },
+        "platform": {
+          "description": "The platform off the job",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JobDTO"
+      }
+    },
+    "JobResultBasic": {
+      "description": "Represents job result",
+      "properties": {
+        "agent": {
+          "description": "Agent alias",
+          "type": "string"
+        },
+        "executionEnd": {
+          "description": "When the execution ended (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "executionId": {
+          "description": "Execution GUID",
+          "type": "string"
+        },
+        "executionStart": {
+          "description": "When the execution started (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "failureType": {
+          "description": "Failure Type",
+          "enum": [
+            "DriverError",
+            "MalforemedExecutionJsonObject",
+            "ConditionsNotMet",
+            "RemoteResourceNotAvailable",
+            "InnerException",
+            "ValidationFailed",
+            "MissingEnvironmentCapabilities",
+            "SecurityIssue",
+            "StepCausedTestFailure",
+            "AgentDisconnected",
+            "AgentError",
+            "ExecutionExpired"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Result GUID",
+          "type": "string"
+        },
+        "message": {
+          "description": "Result message",
+          "type": "string"
+        },
+        "resultType": {
+          "description": "Result Type",
+          "enum": [
+            "Disabled",
+            "Skipped",
+            "Passed",
+            "Failed",
+            "Aborting",
+            "Aborted",
+            "Executing",
+            "Suspended",
+            "Error"
+          ],
+          "type": "string"
+        },
+        "targets": {
+          "description": "Browsers/Devices that the job was executed on",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JobResultBasicDTO"
+      }
+    },
+    "JobResultDetailed": {
+      "description": "Represents job result",
+      "properties": {
+        "agent": {
+          "$ref": "#/definitions/ExecutingAgent",
+          "description": "The GUID of the agent"
+        },
+        "browsers": {
+          "description": "List of browsers the job was executed on",
+          "items": {
+            "$ref": "#/definitions/BrowserRunStats"
+          },
+          "type": "array",
+          "xml": {
+            "name": "BrowserRunStatsDTO",
+            "wrapped": true
+          }
+        },
+        "devices": {
+          "description": "List of devices the job was executed on",
+          "items": {
+            "$ref": "#/definitions/DeviceRunStats"
+          },
+          "type": "array",
+          "xml": {
+            "name": "DeviceRunStatsDTO",
+            "wrapped": true
+          }
+        },
+        "executionEnd": {
+          "description": "When the execution ended (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "executionId": {
+          "description": "Execution GUID",
+          "type": "string"
+        },
+        "executionStart": {
+          "description": "When the execution started (UTC)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "failedTest": {
+          "description": "Number of failed tests",
+          "format": "int32",
+          "type": "integer"
+        },
+        "failureType": {
+          "description": "Failure Type",
+          "enum": [
+            "DriverError",
+            "MalforemedExecutionJsonObject",
+            "ConditionsNotMet",
+            "RemoteResourceNotAvailable",
+            "InnerException",
+            "ValidationFailed",
+            "MissingEnvironmentCapabilities",
+            "SecurityIssue",
+            "StepCausedTestFailure",
+            "AgentDisconnected",
+            "AgentError",
+            "ExecutionExpired"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Result GUID",
+          "type": "string"
+        },
+        "message": {
+          "description": "Result message",
+          "type": "string"
+        },
+        "passRatio": {
+          "description": "Pass ratio",
+          "format": "float",
+          "type": "number"
+        },
+        "passedTest": {
+          "description": "Number of passed tests",
+          "format": "int32",
+          "type": "integer"
+        },
+        "report": {
+          "description": "Report URL",
+          "type": "string"
+        },
+        "resultType": {
+          "description": "Result Type",
+          "enum": [
+            "Disabled",
+            "Skipped",
+            "Passed",
+            "Failed",
+            "Aborting",
+            "Aborted",
+            "Executing",
+            "Suspended",
+            "Error"
+          ],
+          "type": "string"
+        },
+        "targets": {
+          "description": "Browsers/Devices that the job was executed on",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tests": {
+          "description": "Tests that were executing by the job",
+          "items": {
+            "$ref": "#/definitions/JobTestResult"
+          },
+          "type": "array",
+          "xml": {
+            "name": "JobTestResultDTO",
+            "wrapped": true
+          }
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JobResultDetailedDTO"
+      }
+    },
+    "JobTest": {
+      "description": "Contains job test information",
+      "properties": {
+        "failureBehaviorType": {
+          "description": "What happens when the test fails",
+          "enum": [
+            "Continue",
+            "AbortTarget",
+            "AbortJob"
+          ],
+          "type": "string"
+        },
+        "hasDataSource": {
+          "description": "Is the test has a configured data source (for data driven execution)",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "The GUID of the test",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the test",
+          "type": "string"
+        },
+        "position": {
+          "description": "The position on the test in the job",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JobTestDTO"
+      }
+    },
+    "JobTestResult": {
+      "description": "Contains result information for a test that was executed in a job",
+      "properties": {
+        "browsers": {
+          "description": "Execution results by browser (Web tests)",
+          "items": {
+            "$ref": "#/definitions/BrowserRunStats"
+          },
+          "type": "array",
+          "xml": {
+            "name": "BrowserRunStatsDTO",
+            "wrapped": true
+          }
+        },
+        "devices": {
+          "description": "Execution results by devices (Mobile tests)",
+          "items": {
+            "$ref": "#/definitions/DeviceRunStats"
+          },
+          "type": "array",
+          "xml": {
+            "name": "DeviceRunStatsDTO",
+            "wrapped": true
+          }
+        },
+        "name": {
+          "description": "The name of the test",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "JobTestResultDTO"
+      }
+    },
+    "NewJobTestCollection": {
+      "description": "Used for adding tests to existing jobs",
+      "properties": {
+        "position": {
+          "description": "The location of the collection (if less or equals to 0 --&gt; added to the end of the job)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tests": {
+          "description": "A collections of test GUIDs to add into the <seealso cref=\"P:TestProject.Data.External.DTOs.NewJobTestCollectionDTO.position\" /> position",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "NewJobTestCollectionDTO"
+      }
+    },
+    "Project": {
+      "description": "Contains project information",
+      "properties": {
+        "description": {
+          "description": "The description of the project",
+          "type": "string"
+        },
+        "id": {
+          "description": "The GUID of the project",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the project",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ProjectDTO"
+      }
+    },
+    "ProjectParameter": {
+      "description": "Contains project (global) parameter information",
+      "properties": {
+        "description": {
+          "description": "The description of the parameter",
+          "type": "string"
+        },
+        "id": {
+          "description": "The GUID of the parameter",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the parameter",
+          "type": "string"
+        },
+        "secret": {
+          "description": "Indicates if this is a secret parameter",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The value of the parameter",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "ProjectParameterDTO"
+      }
+    },
+    "TestPackage": {
+      "description": "Contains code test package information",
+      "properties": {
+        "description": {
+          "description": "Package description",
+          "type": "string"
+        },
+        "file": {
+          "$ref": "#/definitions/FileDetails",
+          "description": "Package file details"
+        },
+        "id": {
+          "description": "The GUID of the package",
+          "type": "string"
+        },
+        "language": {
+          "description": "Package language",
+          "enum": [
+            "Java",
+            "CSharp",
+            "JavaScript",
+            "Python"
+          ],
+          "type": "string"
+        },
+        "lastModification": {
+          "description": "Modification date",
+          "format": "date-time",
+          "type": "string"
+        },
+        "minSdkLevel": {
+          "description": "Minimum SDK level",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minSdkVersion": {
+          "description": "Minimum SDK version",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the package",
+          "type": "string"
+        },
+        "platform": {
+          "description": "Package platform",
+          "enum": [
+            "Any",
+            "Web",
+            "Android",
+            "iOS"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "TestPackageDTO"
+      }
+    },
+    "TestPackageConflict": {
+      "description": "Contains code update conflict information",
+      "properties": {
+        "className": {
+          "description": "Class name",
+          "type": "string"
+        },
+        "name": {
+          "description": "Code block name",
+          "type": "string"
+        },
+        "parameterConflicts": {
+          "description": "Test parameter conflicts",
+          "items": {
+            "$ref": "#/definitions/TestPackageParameterConflict"
+          },
+          "type": "array",
+          "xml": {
+            "name": "TestPackageParameterConflictDTO",
+            "wrapped": true
+          }
+        },
+        "type": {
+          "description": "The type of the conflict",
+          "enum": [
+            "Missing",
+            "FieldConfilcts",
+            "WillBeOverwitten",
+            "DirectionChange",
+            "DataTypeChange"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "TestPackageConflictDTO"
+      }
+    },
+    "TestPackageParameterConflict": {
+      "description": "Contains code update parameter conflict information",
+      "properties": {
+        "name": {
+          "description": "Parameter name",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the conflict",
+          "enum": [
+            "Missing",
+            "FieldConfilcts",
+            "WillBeOverwitten",
+            "DirectionChange",
+            "DataTypeChange"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "TestPackageParameterConflictDTO"
+      }
+    },
+    "TestPackageTest": {
+      "description": "Contains coded test information",
+      "properties": {
+        "className": {
+          "description": "Test class name",
+          "type": "string"
+        },
+        "description": {
+          "description": "Test description",
+          "type": "string"
+        },
+        "id": {
+          "description": "Test GUID",
+          "type": "string"
+        },
+        "name": {
+          "description": "Test name",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Test summary",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "TestPackageTestDTO"
+      }
+    },
+    "UpdateApplication": {
+      "description": "Contains application information for updating applications",
+      "properties": {
+        "androidActivity": {
+          "description": "Android activity",
+          "type": "string"
+        },
+        "androidPackage": {
+          "description": "Android package",
+          "type": "string"
+        },
+        "appleBundleId": {
+          "description": "Apple BundleId",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the application",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the application",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the web application",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "UpdateApplicationDTO"
+      }
+    },
+    "UpdateJob": {
+      "description": "Contains job information (used for job update)",
+      "properties": {
+        "agentId": {
+          "description": "The GUID of the agent that is associated to the job",
+          "type": "string"
+        },
+        "browsers": {
+          "description": "Browsers (for web job only)",
+          "items": {
+            "enum": [
+              "Chrome",
+              "ChromeHeadless",
+              "Firefox",
+              "FirefoxHeadless",
+              "InternetExplorer",
+              "Safari",
+              "Opera",
+              "Edge"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "xml": {
+            "name": "BrowserType",
+            "wrapped": true
+          }
+        },
+        "description": {
+          "description": "The description of the job",
+          "type": "string"
+        },
+        "devices": {
+          "description": "Device UDIDs (for mobile job only)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of the job",
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "xml": {
+        "name": "UpdateJobDTO"
+      }
+    }
+  },
+  "host": "api.testproject.io",
+  "info": {
+    "description": "TestProject exposes a RESTful API which allows R&D teams to schedule and trigger automation, get status and retrieve testing results. The API is particularly useful when you build your CI pipeline and use TestProject as a centralized test automation execution grid. This management API is auto-enabled for all TestProject accounts. If you don’t have a TestProject account yet, go ahead and create a [free account](https://testproject.io).",
+    "title": "Getting Started with TestProject API",
+    "version": "V2",
+    "x-swagger-net-version": "8.3.18.001"
+  },
+  "paths": {
+    "/v2/agents": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgents",
+        "parameters": [
+          {
+            "description": "Server side search (will search in <b>alias,guid</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation was successful",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Agent"
+              },
+              "type": "array",
+              "xml": {
+                "name": "AgentDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns account agents",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentAsync",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Agent"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns specific agent",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}/addresses": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentAdressesAsync",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns specific agent IP addresses",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}/browsers": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentBrowsers",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Browser"
+              },
+              "type": "array",
+              "xml": {
+                "name": "BrowserDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns agent devices",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}/devices": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentDevices",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,model,udid</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Device"
+              },
+              "type": "array",
+              "xml": {
+                "name": "DeviceDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns agent devices",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}/devices/{deviceUdid}": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentDevice",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Device UDID",
+            "in": "path",
+            "name": "deviceUdid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,model,udid</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Device"
+              },
+              "type": "array",
+              "xml": {
+                "name": "DeviceDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns device",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}/frameworks": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentFrameworks",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Framework"
+              },
+              "type": "array",
+              "xml": {
+                "name": "FrameworkDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns agent frameworks",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/agents/{agentId}/state": {
+      "get": {
+        "consumes": [],
+        "operationId": "Agents_GetAgentState",
+        "parameters": [
+          {
+            "description": "Agent id",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "enum": [
+                "None",
+                "Disconnected",
+                "Idle",
+                "Executing",
+                "Dev",
+                "Stopped",
+                "Updating",
+                "Registering",
+                "Recording",
+                "Uninstalling",
+                "Suspended",
+                "Busy",
+                "Starting"
+              ],
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Agent was not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns specific agent state",
+        "tags": [
+          "Agents"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects": {
+      "get": {
+        "consumes": [],
+        "operationId": "Projects_GetProjectsForUser",
+        "parameters": [
+          {
+            "description": "Server side search (will search in <b>name,description</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Project"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ProjectDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns projects for the account that the user have access to",
+        "tags": [
+          "Projects"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}": {
+      "get": {
+        "consumes": [],
+        "operationId": "Projects_GetProject",
+        "parameters": [
+          {
+            "description": "The id of the project",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Project not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns specific project",
+        "tags": [
+          "Projects"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/applications": {
+      "get": {
+        "consumes": [],
+        "operationId": "Applications_GetApplicationsForProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,description</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Application"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ApplicationDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns project applications",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "## A request to this endpoint will create a new application in the project.\r\nThe **name** and **platform** properties are mandatory.  \r\n* For Web applications, the **url** property is mandatory.\r\n* For Android applications, the **androidPackage** and the **androidActivity** properties are mandatory.\r\n* For iOS applications, the **appleBundleId** property is mandatory.",
+        "operationId": "Applications_CreateApplicationAsync",
+        "parameters": [
+          {
+            "description": "Data for the new application",
+            "in": "body",
+            "name": "app",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateApplication"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Application"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ApplicationDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "409": {
+            "description": "Application with this name already exists"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Create a new application",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/applications/{appId}": {
+      "delete": {
+        "consumes": [],
+        "operationId": "Applications_DeleteV2ProjectsByProjectIdApplicationsByAppId",
+        "parameters": [
+          {
+            "description": "The GUID of the application to delete",
+            "in": "path",
+            "name": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Application"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ApplicationDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Application was not found"
+          },
+          "412": {
+            "description": "Application is in use"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Delete an application",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      },
+      "get": {
+        "consumes": [],
+        "operationId": "Applications_GetApplicationAsync",
+        "parameters": [
+          {
+            "description": "The id of the application",
+            "in": "path",
+            "name": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Application"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns a specific application",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "## A request to this endpoint will update the application.\r\n* The **platform** property cannot be updated. All other properties must be provided.\r\n* If the application contains a file, only **name** and **description** can be updated.\r\n* For Web applications, the **url** property is mandatory.\r\n* For Android applications, the **androidPackage** and the **androidActivity** properties are mandatory.\r\n* For iOS applications, the **appleBundleId** property is mandatory.",
+        "operationId": "Applications_UpdateApplicationAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the application to update",
+            "in": "path",
+            "name": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Data for the updated application",
+            "in": "body",
+            "name": "appData",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateApplication"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Application"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ApplicationDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Application was not found"
+          },
+          "409": {
+            "description": "Application with the same name already exists"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Update an application",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/applications/{appId}/file": {
+      "delete": {
+        "consumes": [],
+        "operationId": "Applications_DeleteApplicationFile",
+        "parameters": [
+          {
+            "description": "The id of the application",
+            "in": "path",
+            "name": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "File was updated"
+          },
+          "400": {
+            "description": "No application file"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Remove application file",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "## A request to this endpoint confirms that the application file was uploaded to TestProject storage.\r\nUse this after:  \r\n* An upload information was received from **GET v2/projects/{projectId}/applications/{appId}/file/upload-link**\r\n* The file was successfully uploaded to storage as binary data",
+        "operationId": "Applications_PostV2ProjectsByProjectIdApplicationsByAppIdFile",
+        "parameters": [
+          {
+            "description": "The id of the application",
+            "in": "path",
+            "name": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Information of the uploaded file",
+            "in": "body",
+            "name": "fileInfo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FileUploadedInfo"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Upload link was generated",
+            "schema": {
+              "$ref": "#/definitions/FileUploadInfo"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "402": {
+            "description": "No enough storage"
+          },
+          "403": {
+            "description": "Application cannot have attached files"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Confirm file uploaded",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/applications/{appId}/file/upload-link": {
+      "get": {
+        "consumes": [],
+        "description": "## A request to this endpoint will generate upload information to be used to update the application file\r\nAfter using this:  \r\n* Upload application file using the information received\r\n* Confirm upload done by **POST v2/projects/{projectId}/applications/{appId}/file** and providing file information in request body",
+        "operationId": "Applications_UploadAppFileAsync",
+        "parameters": [
+          {
+            "description": "The id of the application",
+            "in": "path",
+            "name": "appId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Upload link was generated",
+            "schema": {
+              "$ref": "#/definitions/FileUploadInfo"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "402": {
+            "description": "No enough storage"
+          },
+          "403": {
+            "description": "Application cannot have attached files"
+          },
+          "404": {
+            "description": "Application not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Get an upload URL for an application",
+        "tags": [
+          "Applications"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs": {
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobsForProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,description</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Job"
+              },
+              "type": "array",
+              "xml": {
+                "name": "JobDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns project Jobs",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/x-www-form-urlencoded"
+        ],
+        "operationId": "Jobs_CreateJobAsync",
+        "parameters": [
+          {
+            "description": "New job information",
+            "in": "body",
+            "name": "newJob",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateJob"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Job"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "409": {
+            "description": "A job with the same name already exists"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Creates a new job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}": {
+      "delete": {
+        "consumes": [],
+        "operationId": "Jobs_DeleteJob",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Delete job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      },
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobAsync",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Job"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns a specific job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/x-www-form-urlencoded"
+        ],
+        "operationId": "Jobs_UpdateJobAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job to be updated",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Updated job information",
+            "in": "body",
+            "name": "updateJob",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateJob"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Job"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "No such job"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Update job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/agent": {
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobAgentAsync",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Agent"
+            }
+          },
+          "204": {
+            "description": "No agent is defined for the job"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns an agent that is associated with the job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/agent/{agentId}": {
+      "put": {
+        "consumes": [],
+        "operationId": "Jobs_UpdateJobAgentAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The GUID of the agent to be associated with the job",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          },
+          "412": {
+            "description": "Agent is not in a suitable state"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Associate an agent with a job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/browsers": {
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobBrowsers",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns list of browsers that are defined for the job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "### The provided browsers will be defined for the job\r\n* Already defined browser that are is not in the provided list will be removed.\r\n* **At least one browser must be provided**",
+        "operationId": "Jobs_UpdateJobBrowsersAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The browsers of the devices to be defined on the job",
+            "in": "body",
+            "name": "browsers",
+            "required": true,
+            "schema": {
+              "items": {
+                "enum": [
+                  "Chrome",
+                  "ChromeHeadless",
+                  "Firefox",
+                  "FirefoxHeadless",
+                  "InternetExplorer",
+                  "Safari",
+                  "Opera",
+                  "Edge"
+                ],
+                "type": "string"
+              },
+              "type": "array",
+              "xml": {
+                "name": "BrowserType",
+                "wrapped": true
+              }
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Associate specific browsers with a job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/devices": {
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobDevices",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,model,udid</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Device"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns list of devices that are defined for the job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "### The provided devices will be defined for the job\r\n* Already defined device that are is not in the provided list will be removed\r\n* **At least one authorized device must be provided**",
+        "operationId": "Jobs_UpdateJobDevicesAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The UUIDs of the devices to be defined on the job",
+            "in": "body",
+            "name": "devices",
+            "required": true,
+            "schema": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Associate specific devices with a job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/executions/{executionId}/abort": {
+      "post": {
+        "consumes": [],
+        "operationId": "Jobs_AbortRunningJobAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The GUID of the execution",
+            "in": "path",
+            "name": "executionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updating execution"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "403": {
+            "description": "Agent is private"
+          },
+          "404": {
+            "description": "Job/Execution not found"
+          },
+          "412": {
+            "description": "Incorrect execution state"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Abort execution",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/executions/{executionId}/resume": {
+      "post": {
+        "consumes": [],
+        "operationId": "Jobs_ResumeRunningJobAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The GUID of the execution",
+            "in": "path",
+            "name": "executionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updating execution"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "403": {
+            "description": "Agent is private"
+          },
+          "404": {
+            "description": "Job/Execution not found"
+          },
+          "412": {
+            "description": "Incorrect execution state"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Resume execution",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/executions/{executionId}/state": {
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobExecutionStateAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The GUID of the execution",
+            "in": "path",
+            "name": "executionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Job State",
+            "schema": {
+              "$ref": "#/definitions/ExecutionState"
+            }
+          },
+          "404": {
+            "description": "Job/Execution not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Get execution state",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/executions/{executionId}/suspend": {
+      "post": {
+        "consumes": [],
+        "operationId": "Jobs_SuspendRunningJobAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The GUID of the execution",
+            "in": "path",
+            "name": "executionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Updating execution"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "403": {
+            "description": "Agent is private"
+          },
+          "404": {
+            "description": "Job/Execution not found"
+          },
+          "412": {
+            "description": "Incorrect execution state"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Suspend execution (pause)",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/reports": {
+      "get": {
+        "consumes": [],
+        "operationId": "Reports_GetJobReports",
+        "parameters": [
+          {
+            "description": "The id of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Minimum execution start date",
+            "format": "date-time",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum execution start date",
+            "format": "date-time",
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Specific target",
+            "in": "query",
+            "name": "target",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/JobResultBasic"
+              },
+              "type": "array",
+              "xml": {
+                "name": "JobResultBasicDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns job execution report",
+        "tags": [
+          "Reports"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/reports/latest": {
+      "get": {
+        "consumes": [],
+        "operationId": "Reports_GetV2ProjectsByProjectIdJobsByJobIdReportsLatest",
+        "parameters": [
+          {
+            "description": "The id of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Should provide a detailed response?",
+            "in": "query",
+            "name": "details",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "TestProject",
+            "description": "The format of the requested report",
+            "enum": [
+              "TestProject",
+              "JUnit"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JUnitTestSuite"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Report/Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns job execution latest report",
+        "tags": [
+          "Reports"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/reports/{reportId}": {
+      "get": {
+        "consumes": [],
+        "operationId": "Reports_GetJobReportAsync",
+        "parameters": [
+          {
+            "description": "The id of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The report id",
+            "in": "path",
+            "name": "reportId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Should provide a detailed response?",
+            "in": "query",
+            "name": "details",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "TestProject",
+            "description": "The format of the requested report",
+            "enum": [
+              "TestProject",
+              "JUnit"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/JUnitTestSuite"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Report/Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns job execution report",
+        "tags": [
+          "Reports"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/run": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "## This will run the job on defined agent and targets (devices/browsers)\r\n* If **executionParameters** object is provided in the request body, the job will run with these parameters\r\n* All of the properties are optional\r\n* Provide browsers / devices according to job platform\r\n* If the **queue** parameter is true and the agent is currently busy, the job will be executed once the agent becomes available",
+        "operationId": "Jobs_RunJobAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Parameters to be used for the execution. Can be an empty object.",
+            "in": "body",
+            "name": "executionParameters",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ExecutionParameters"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Execution"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Runs a job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/tests": {
+      "get": {
+        "consumes": [],
+        "operationId": "Jobs_GetJobTests",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/JobTest"
+              },
+              "type": "array",
+              "xml": {
+                "name": "JobTestDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns list of tests that are defined for the job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/x-www-form-urlencoded"
+        ],
+        "operationId": "Jobs_AddTestsToJobAsync",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The collection of test ids to add to the job",
+            "in": "body",
+            "name": "testsCollection",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewJobTestCollection"
+            }
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Add tests into a job (all tests must be of the same platform)",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/jobs/{jobId}/tests/{testId}/{position}": {
+      "delete": {
+        "consumes": [],
+        "operationId": "Jobs_RemoveTestFromJob",
+        "parameters": [
+          {
+            "description": "The GUID of the job",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The GUID of the test to be removed",
+            "in": "path",
+            "name": "testId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The position of the test to be removed (if omitted or 0, all occurrences will be removed from the job)",
+            "format": "int32",
+            "in": "path",
+            "name": "position",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Job not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Removes a test from job",
+        "tags": [
+          "Jobs"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/parameters": {
+      "get": {
+        "consumes": [],
+        "operationId": "ProjectParameters_GetProjectParameters",
+        "parameters": [
+          {
+            "description": "The id of the project",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,description,value</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ProjectParameter"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Project not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns project (global) parameters",
+        "tags": [
+          "ProjectParameters"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "operationId": "ProjectParameters_CreateProjectParameterAsync",
+        "parameters": [
+          {
+            "description": "The id of the project",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The data of the new parameters",
+            "in": "body",
+            "name": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateOrUpdateProjectParameter"
+            }
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ProjectParameter"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ProjectParameterDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid arguments"
+          },
+          "404": {
+            "description": "Project not found"
+          },
+          "409": {
+            "description": "Parameter with this name already exists in the project"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Creates a new project parameter",
+        "tags": [
+          "ProjectParameters"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/parameters/{parameterId}": {
+      "delete": {
+        "consumes": [],
+        "operationId": "ProjectParameters_DeleteProjectParameterAsync",
+        "parameters": [
+          {
+            "description": "The id of the project",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The id of the parameter",
+            "in": "path",
+            "name": "parameterId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Delete even if the parameter is in use (default=false)",
+            "in": "query",
+            "name": "force",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": true,
+            "description": "If forcefully deleting, the places where it was used will be replaced with the currently set value (default=true)",
+            "in": "query",
+            "name": "replace",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid arguments"
+          },
+          "404": {
+            "description": "Project or Parameter not found"
+          },
+          "409": {
+            "description": "Parameter in use"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Deletes a project parameter",
+        "tags": [
+          "ProjectParameters"
+        ],
+        "x-plan": "Free"
+      },
+      "get": {
+        "consumes": [],
+        "operationId": "ProjectParameters_GetProjectParameterAsync",
+        "parameters": [
+          {
+            "description": "The id of the project",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The id of the parameter",
+            "in": "path",
+            "name": "parameterId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Project or Parameter not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Retrieve a single project parameter",
+        "tags": [
+          "ProjectParameters"
+        ],
+        "x-plan": "Free"
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain",
+          "application/xml",
+          "text/xml",
+          "application/x-www-form-urlencoded"
+        ],
+        "description": "The \"secret\" property must always be specified",
+        "operationId": "ProjectParameters_UpdateProjectParameterAsync",
+        "parameters": [
+          {
+            "description": "The id of the project",
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The id of the parameter",
+            "in": "path",
+            "name": "parameterId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The data of the parameters",
+            "in": "body",
+            "name": "param",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateOrUpdateProjectParameter"
+            }
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ProjectParameter"
+              },
+              "type": "array",
+              "xml": {
+                "name": "ProjectParameterDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid arguments"
+          },
+          "404": {
+            "description": "Project or Parameter not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Updates a project parameter",
+        "tags": [
+          "ProjectParameters"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/test-packages": {
+      "get": {
+        "consumes": [],
+        "operationId": "TestPackages_GetTestPackages",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Server side search (will search in <b>name,description,fileName</b> properties)",
+            "in": "query",
+            "name": "_q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Start from result #N (zero based)",
+            "in": "query",
+            "minimum": 0,
+            "name": "_start",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Return maximum N results (<b>X-Total-Count</b> header will contain the total number of results)",
+            "in": "query",
+            "maximum": 50,
+            "name": "_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TestPackage"
+              },
+              "type": "array",
+              "xml": {
+                "name": "TestPackageDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Gets all test packages for project",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [],
+        "description": "The package file needs to be sent as a \"application/octet-stream\" body (not as multi-part)",
+        "operationId": "TestPackages_CreateTestPackageAsync",
+        "parameters": [
+          {
+            "description": "The name of the new package",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The language of the package",
+            "enum": [
+              "Java",
+              "CSharp",
+              "JavaScript",
+              "Python"
+            ],
+            "in": "query",
+            "name": "language",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The platform of the package",
+            "enum": [
+              "Any",
+              "Web",
+              "Android",
+              "iOS"
+            ],
+            "in": "query",
+            "name": "platform",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Application GUID (mandatory for mobile packages only)",
+            "in": "query",
+            "name": "appId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Package description (optional)",
+            "in": "query",
+            "name": "description",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "File updated"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Package not found"
+          },
+          "409": {
+            "description": "Same package"
+          },
+          "412": {
+            "description": "Conflicts exist",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TestPackageConflict"
+              },
+              "type": "array",
+              "xml": {
+                "name": "TestPackageConflictDTO",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Create Coded Test package file",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/test-packages/{packageId}": {
+      "delete": {
+        "consumes": [],
+        "operationId": "TestPackages_DeleteTestPackageAsync",
+        "parameters": [
+          {
+            "description": "Test Package GUID",
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Forcefully delete even if in use",
+            "in": "query",
+            "name": "force",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Package deleted"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Package not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Update Coded Test package file",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      },
+      "get": {
+        "consumes": [],
+        "operationId": "TestPackages_GetTestPackageAsync",
+        "parameters": [
+          {
+            "description": "Test Package GUID",
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/TestPackage"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Package not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Returns a specific coded test package",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      },
+      "post": {
+        "consumes": [],
+        "operationId": "TestPackages_UpdateTestPackageFileAsync",
+        "parameters": [
+          {
+            "description": "Test Package GUID",
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If true, auto resolve conflicts",
+            "in": "query",
+            "name": "resolveConflicts",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "File updated"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Package not found"
+          },
+          "409": {
+            "description": "Same package"
+          },
+          "412": {
+            "description": "Conflicts exist",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TestPackageConflict"
+              },
+              "type": "array",
+              "xml": {
+                "name": "TestPackageConflictDTO",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Update Coded Test package file",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/test-packages/{packageId}/file": {
+      "get": {
+        "consumes": [],
+        "operationId": "TestPackages_GetTestPackageFileAsync",
+        "parameters": [
+          {
+            "description": "Test Package GUID",
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FileDownloadInfo"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Package not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Get coded test package file download information",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      }
+    },
+    "/v2/projects/{projectId}/test-packages/{packageId}/tests": {
+      "get": {
+        "consumes": [],
+        "operationId": "TestPackages_GetTestPackageTests",
+        "parameters": [
+          {
+            "description": "The GUID of the test package",
+            "in": "path",
+            "name": "packageId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/json-patch+json",
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TestPackageTest"
+              },
+              "type": "array",
+              "xml": {
+                "name": "TestPackageTestDTO",
+                "wrapped": true
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "Package not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "summary": "Gets all tests in coded test package",
+        "tags": [
+          "TestPackages"
+        ],
+        "x-plan": "Free"
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "Authorization": {
+      "description": "API Key Authentication",
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "description": "Manages agents operations",
+      "name": "Agents"
+    },
+    {
+      "description": "Manages applications operations",
+      "name": "Applications"
+    },
+    {
+      "description": "Manages job operations",
+      "name": "Jobs"
+    },
+    {
+      "description": "Manages project (global) parameters operations",
+      "name": "ProjectParameters"
+    },
+    {
+      "description": "Manages projects operations",
+      "name": "Projects"
+    },
+    {
+      "description": "Manages Report operations",
+      "name": "Reports"
+    },
+    {
+      "description": "Manages test packages operations",
+      "name": "TestPackages"
+    }
+  ]
+}
